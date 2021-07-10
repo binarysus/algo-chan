@@ -2,7 +2,7 @@
   "name": "algo-chan",
   "version": "0.1.0",
   "description": "a collaborative Discord bot for the binarysus server",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +11,21 @@
     "url": "git+https://github.com/binarysus/algo-chan.git"
   },
   "contributors": [
-    { "name": "Urcute", "url": "https://github.com/itsUrcute" },
-    { "name": "cheeze2000", "url": "https://github.com/cheeze2000" }
+    {
+      "name": "Urcute",
+      "url": "https://github.com/itsUrcute"
+    },
+    {
+      "name": "cheeze2000",
+      "url": "https://github.com/cheeze2000"
+    }
   ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/binarysus/algo-chan/issues"
   },
-  "homepage": "https://github.com/binarysus/algo-chan#readme"
+  "homepage": "https://github.com/binarysus/algo-chan#readme",
+  "dependencies": {
+    "@sapphire/framework": "^1.0.2"
+  }
 }
