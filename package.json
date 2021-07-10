@@ -4,7 +4,7 @@
   "description": "a collaborative Discord bot for the binarysus server",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint src"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
   "homepage": "https://github.com/binarysus/algo-chan#readme",
   "dependencies": {
     "@sapphire/framework": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
   }
 }
