@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const { Command } = require("@sapphire/framework");
 const fetchUser = require("../../utils/fetchUser");
 const profileEmbed = require("../../utils/profileEmbed");
@@ -24,4 +23,4 @@ module.exports = class extends Command {
 
     message.channel.send(profileEmbed(data.user));
   }
-}
+};

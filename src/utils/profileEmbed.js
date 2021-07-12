@@ -28,4 +28,4 @@ module.exports = function(user) {
   addProgressBar("Harder", stat.numHarderSolved, embed);
 
   return embed;
-}
+};
