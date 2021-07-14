@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 14",
+  
+  
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "esnext",
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "noEmitHelpers": true,
+    "paths": {
+      "#commands": ["./src/commands"],
+      "#types": ["./src/types/Command"]
+    }
+  },
+
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+
+}

@@ -1,34 +1,39 @@
 {
   "name": "algo-chan",
   "version": "0.1.0",
+  "type": "module",
   "description": "a collaborative Discord bot for the binarysus server",
   "main": "src/index.js",
   "scripts": {
-    "lint": "npx eslint src"
+    "lint": "npx eslint src",
+    "flint": "npx eslint src --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/binarysus/algo-chan.git"
   },
   "contributors": [
-    {
-      "name": "Urcute",
-      "url": "https://github.com/itsUrcute"
-    },
-    {
-      "name": "cheeze2000",
-      "url": "https://github.com/cheeze2000"
-    }
+    "Urcute (https://github.com/itsUrcute)",
+    "cheeze2000 (https://github.com/cheeze2000)"
   ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/binarysus/algo-chan/issues"
   },
   "homepage": "https://github.com/binarysus/algo-chan#readme",
-  "dependencies": {
-    "@sapphire/framework": "^1.0.2"
+  "imports": {
+    "#commands": "./dist/src/commands",
+    "#types": "./dist/src/types"
   },
   "devDependencies": {
-    "eslint": "^7.30.0"
-  }
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.30.0",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "discord.js": "^13.0.0-dev.1dcad05.1626091387",
+    "typescript": "^4.3.5"
+  },
+  "author": "itsUrcute"
 }
