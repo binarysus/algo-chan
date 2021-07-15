@@ -1,15 +1,14 @@
 module.exports = {
-  "env": {
-    "browser": false,
-    "node" : true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 12
-  },
-  "rules": {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: [
+    "@typescript-eslint",
+  ],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  rules: {
     "arrow-spacing": "error",
     "block-spacing": "error",
     "comma-dangle": "error",
@@ -40,7 +39,7 @@ module.exports = {
     "space-infix-ops": "error",
     "space-unary-ops": "error",
     "spaced-comment": ["error", "always"],
-    "switch-colon-spacing": [ "error", {"after": true, "before": false}],
+    "switch-colon-spacing": ["error", { "after": true, "before": false }],
     "yoda": "error"
   }
 };
