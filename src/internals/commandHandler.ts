@@ -1,6 +1,6 @@
 import { ApplicationCommand, Collection, GuildApplicationCommandPermissionData, Snowflake } from "discord.js";
 import { readdir } from "fs/promises";
-import { guildID } from "../constants.js";
+import { guildID } from "../constants";
 import type { ApplicationCommandData, Client } from "discord.js";
 import type { Command } from "../types/Command";
 
