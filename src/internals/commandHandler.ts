@@ -1,6 +1,6 @@
 import { ApplicationCommand, Collection, GuildApplicationCommandPermissionData, Snowflake } from "discord.js";
 import { readdir } from "fs/promises";
-import { guildID } from "../constants/guildID.js";
+import { guildID } from "../constants.js";
 import type { ApplicationCommandData, Client } from "discord.js";
 import type { Command } from "../types/Command";
 
@@ -63,7 +63,7 @@ function startHandler(client: Client): void {
       return;
     }
     for (const [key, val] of commandData) {
-      const commandPermissions = commands.get(val.name)!.permissions;
+      const commandPermissions = commands.get(val.name)?.permissions;
       if (!commandPermissions) continue;
       const data: GuildApplicationCommandPermissionData = {
         id: key,
@@ -116,19 +116,6 @@ function startHandler(client: Client): void {
 
     }
   );
-  client.on(
-    "messageCreate",
-    (message) => {
-
-      if (message.content === "test") {
-
-        setCommands(commands);
-
-      }
-
-    }
-  );
-
 }
 
 export {
