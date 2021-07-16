@@ -1,6 +1,6 @@
 import { ApplicationCommand, Collection, GuildApplicationCommandPermissionData, Snowflake } from "discord.js";
 import { readdir } from "fs/promises";
-import { BSguildID } from "../constants/guilds";
+import { BS_GUILD_ID } from "../constants/guilds";
 import type { ApplicationCommandData, Client } from "discord.js";
 import type { Command } from "../types/Command";
 
@@ -27,7 +27,7 @@ function startHandler(client: Client): void {
 
   async function setCommands(commands: Collection<string, Command>): Promise<Collection<Snowflake, ApplicationCommand>> {
     const cmdArr: ApplicationCommandData[] = commands.array(),
-      guild = client.guilds.cache.get(BSguildID);
+      guild = client.guilds.cache.get(BS_GUILD_ID);
 
     if (!guild) {
 
