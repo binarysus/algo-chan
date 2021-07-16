@@ -30,10 +30,10 @@ export default function(user: BsUser) {
     .addField("Level", `${stat.grade}`, true)
     .addField("Experience", `${stat.xp}`, true);
 
-  addProgressBar("Easy" as Difficulty, stat.numEasySolved, embed);
-  addProgressBar("Medium" as Difficulty, stat.numMediumSolved, embed);
-  addProgressBar("Hard" as Difficulty, stat.numHardSolved, embed);
-  addProgressBar("Harder" as Difficulty, stat.numHarderSolved, embed);
+  addProgressBar(Difficulty.Easy, stat.numEasySolved, embed);
+  addProgressBar(Difficulty.Medium, stat.numMediumSolved, embed);
+  addProgressBar(Diffuculty.Hard, stat.numHardSolved, embed);
+  addProgressBar(Difficulty.Harder, stat.numHarderSolved, embed);
 
   return embed;
 };
