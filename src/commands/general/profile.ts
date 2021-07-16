@@ -7,7 +7,7 @@ export const command: Command = {
   description: "get the binarysearch profile of a user",
   options: [
     {
-    	name: 'query',
+    	name: 'user',
         type: 'STRING',
         description: 'the username of the user to fetch',
         required: true,
