@@ -1,15 +1,14 @@
-{
-  "env": {
-    "browser": false,
-    "node" : true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 12
-  },
-  "rules": {
+module.exports = {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: [
+    "@typescript-eslint",
+  ],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  rules: {
     "arrow-spacing": "error",
     "block-spacing": "error",
     "comma-dangle": "error",
@@ -43,4 +42,4 @@
     "switch-colon-spacing": ["error", { "after": true, "before": false }],
     "yoda": "error"
   }
-}
+};
