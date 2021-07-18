@@ -15,15 +15,13 @@ export const command: Command = {
   ],
   permissions: [],
   async execute(interaction) {
-    if(interaction.isCommand()) {
-      const value = interaction.options.get("query")?.value;
-      const data = await fetchUser(value as string);
-      if(!data) {
-        interaction.reply(responses.PROFILE_NOT_FOUND);
-      }
-      else {
-        interaction.reply({ embeds: [profileEmbed(data)] });
-      }
+    const value = interaction.options.get("query")?.value;
+    const data = await fetchUser(value as string);
+    if(!data) {
+      interaction.reply(responses.PROFILE_NOT_FOUND);
+    }
+    else {
+      interaction.reply({ embeds: [profileEmbed(data)] });
     }
   }
 };
