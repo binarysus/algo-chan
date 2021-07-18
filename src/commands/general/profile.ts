@@ -15,7 +15,7 @@ export const command: Command = {
   ],
   permissions: [],
   async execute(interaction) {
-    const value = interaction.options.get("query")?.value;
+    const value = interaction.options.get("user")?.value;
     const data = await fetchUser(value as string);
     if(!data) {
       interaction.reply(responses.PROFILE_NOT_FOUND);
