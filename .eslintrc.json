@@ -1,4 +1,4 @@
-module.exports = {
+{
   "env": {
     "browser": false,
     "node" : true,
@@ -43,4 +43,4 @@ module.exports = {
     "switch-colon-spacing": [ "error", {"after": true, "before": false}],
     "yoda": "error"
   }
-};
+}
