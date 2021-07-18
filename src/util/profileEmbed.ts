@@ -1,4 +1,4 @@
-import { MessageEmbed, User } from "discord.js";
+import { MessageEmbed } from "discord.js";
 import BsUser from "../constants/bsUser";
 import emotes from "../constants/emotes";
 import questions from "../constants/questions";
@@ -21,7 +21,7 @@ function addProgressBar(difficulty: Difficulty, value: number, embed: MessageEmb
   );
 }
 
-export default function(user: BsUser) {
+export default function(user: BsUser): MessageEmbed {
   const { stat } = user;
 
   const embed = new MessageEmbed()
@@ -32,8 +32,8 @@ export default function(user: BsUser) {
 
   addProgressBar(Difficulty.Easy, stat.numEasySolved, embed);
   addProgressBar(Difficulty.Medium, stat.numMediumSolved, embed);
-  addProgressBar(Diffuculty.Hard, stat.numHardSolved, embed);
+  addProgressBar(Difficulty.Hard, stat.numHardSolved, embed);
   addProgressBar(Difficulty.Harder, stat.numHarderSolved, embed);
 
   return embed;
-};
+}

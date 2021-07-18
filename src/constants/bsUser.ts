@@ -1,9 +1,9 @@
 interface Badge {
-	id: number,
-	userId: number,
-	type: string,
-	createTime: number,
-	count: number,
+  id: number,
+  userId: number,
+  type: string,
+  createTime: number,
+  count: number,
 }
 
 export default interface BSUser {
@@ -127,4 +127,5 @@ export default interface BSUser {
     submitted: number[],
     solvedToday: number,
     isOnline: boolean,
-  }
+// eslint-disable-next-line semi
+}
