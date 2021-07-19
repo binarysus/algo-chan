@@ -1,6 +1,6 @@
 import type { Command } from "../../types/Command";
 
-export const command: Command = {
+const command: Command = {
   name: "ping",
   description: "pong",
   options: [
@@ -23,3 +23,5 @@ export const command: Command = {
 
   }
 };
+
+export default command;
