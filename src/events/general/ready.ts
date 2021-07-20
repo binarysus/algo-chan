@@ -1,11 +1,12 @@
 import { DiscordEvent } from "../../types/DiscordEvent";
 
 const event: DiscordEvent = {
-  name: "test",
-  event: "guildMemberUpdate",
+  name: "a",
+  event: "ready",
   description: "boop",
-  execute(){
-    console.log();
+  once: true,
+  async execute() {
+    // big pogger
   }
 };
 

@@ -3,7 +3,7 @@ interface Command extends ApplicationCommandData {
   nsfw?: boolean;
   ownerOnly?: boolean;
   permissions?: ApplicationCommandPermissionData[];
-  execute(interaction: CommandInteraction): void
+  execute(interaction: CommandInteraction): Promise<void>;
 }
 
 export { Command };

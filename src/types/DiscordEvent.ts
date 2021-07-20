@@ -1,14 +1,15 @@
-import { ClientEvents} from "discord.js";
+import { ClientEvents } from "discord.js";
 
 type DiscordEvent = {
   [K in keyof ClientEvents]: {
-    event: K;
     name: string;
+    event: K;
     description: string;
-    execute(...args: ClientEvents[K]): void;
+    once: boolean;
+    execute(...args: ClientEvents[K]): Promise<void>;
   }
 }[keyof ClientEvents]
 
 export {
   DiscordEvent
-}
+};
