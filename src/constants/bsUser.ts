@@ -127,5 +127,4 @@ export default interface BSUser {
     submitted: number[],
     solvedToday: number,
     isOnline: boolean,
-// eslint-disable-next-line semi
 }
