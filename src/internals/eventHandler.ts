@@ -27,9 +27,9 @@ async function startEventHandler(client: Client): Promise<void> {
       events.filter(ev => ev.event === e).forEach(a => {
         // @ts-expect-error types being weird 2: electric boogaloo
         a.execute(...p);
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
 export {
