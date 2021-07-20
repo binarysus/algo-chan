@@ -1,5 +1,5 @@
 import { Client, Intents } from "discord.js";
-import { startCommandHandler } from "./internals/commandHandler.js";
+import { startCommandHandler } from "./internals/commandHandler";
 import { token } from "../config.json";
 
 const client = new Client({

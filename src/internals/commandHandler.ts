@@ -8,6 +8,7 @@ import type {
   GuildApplicationCommandPermissionData,
   Snowflake
 } from "discord.js";
+
 import type { Command } from "../types/Command";
 
 function startCommandHandler(client: Client): void {
