@@ -8,7 +8,7 @@ type DiscordEvent = {
     once: boolean;
     execute(...args: ClientEvents[K]): Promise<void>;
   }
-}[keyof ClientEvents]
+}[keyof ClientEvents];
 
 export {
   DiscordEvent
