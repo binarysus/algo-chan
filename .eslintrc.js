@@ -9,6 +9,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended"
   ],
   rules: {
+    "@typescript-eslint/semi": "error",
     "arrow-spacing": "error",
     "block-spacing": "error",
     "comma-dangle": "error",
