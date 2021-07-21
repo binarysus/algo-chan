@@ -2,13 +2,14 @@ module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   plugins: [
-    "@typescript-eslint",
+    "@typescript-eslint"
   ],
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   rules: {
+    "@typescript-eslint/semi": "error",
     "arrow-spacing": "error",
     "block-spacing": "error",
     "comma-dangle": "error",
@@ -17,7 +18,7 @@ module.exports = {
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "no-extra-parens": "error",
-    "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1, "maxBOF": 0}],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1, "maxBOF": 0 }],
     "no-tabs": "error",
     "no-trailing-spaces": "error",
     "no-unneeded-ternary": "error",
@@ -31,7 +32,6 @@ module.exports = {
     "operator-assignment": ["error", "always"],
     "prefer-const": "error",
     "quotes": ["error", "double"],
-    "semi": ["error", "always"],
     "semi-spacing": "error",
     "semi-style": ["error", "last"],
     "space-before-blocks": "error",

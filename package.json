@@ -25,9 +25,11 @@
   },
   "dependencies": {
     "discord.js": "^13.0.0-dev.1dcad05.1626091387",
+    "node-fetch": "^2.6.1",
     "env-cmd": "^10.1.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.11",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
