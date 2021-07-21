@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "discord.js": "^13.0.0-dev.1dcad05.1626091387",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
     "env-cmd": "^10.1.0"
   },
   "devDependencies": {
