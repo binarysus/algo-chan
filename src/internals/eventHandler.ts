@@ -11,7 +11,7 @@ async function startEventHandler(client: Client): Promise<void> {
   const setEventsOn = new Set<keyof ClientEvents>(events.filter(x => !x.once).map(x => x.event));
   const setEventsOnce = new Set<keyof ClientEvents>(events.filter(x => x.once).map(x => x.event));
 
-  setEventsOn.forEach(e => {
+  for (const e of setEventsOn) {
     client.on<keyof ClientEvents>(e, (...p) => {
 
       events.filter(ev => ev.event === e).forEach(a => {
@@ -19,9 +19,9 @@ async function startEventHandler(client: Client): Promise<void> {
         a.execute(...p);
       });
     });
-  });
+  }
 
-  setEventsOnce.forEach(e => {
+  for (const e of setEventsOnce) {
     client.once<keyof ClientEvents>(e, (...p) => {
 
       events.filter(ev => ev.event === e).forEach(a => {
@@ -29,7 +29,7 @@ async function startEventHandler(client: Client): Promise<void> {
         a.execute(...p);
       });
     });
-  });
+  }
 }
 
 export {
