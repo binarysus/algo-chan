@@ -11,7 +11,7 @@ import type {
 } from "discord.js";
 import type { Command } from "../types/Command";
 
-function startCommandHandler(client: Client): void {
+function startCommandHandler(client: Client): Collection<string, Command> {
 
   const commands = new Collection<string, Command>();
   let commandData: Collection<Snowflake, ApplicationCommand>;
@@ -106,6 +106,9 @@ function startCommandHandler(client: Client): void {
 
     }
   );
+
+  return commands;
+
 }
 
 export {
