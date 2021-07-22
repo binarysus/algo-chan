@@ -84,7 +84,6 @@ function startCommandHandler(client: Client): void {
 
       // Configuring permissions for every command.
       await setPermissions(commands, commandData);
-      console.log("The bot is ready");
 
     }
   );

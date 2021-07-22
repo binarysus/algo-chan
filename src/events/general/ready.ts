@@ -6,7 +6,7 @@ const event: DiscordEvent = {
   description: "boop",
   once: true,
   async execute() {
-    // big pogger
+    console.log("bot is ready");
   }
 };
 
