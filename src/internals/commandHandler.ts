@@ -1,5 +1,6 @@
 import { Collection } from "discord.js";
 import { loadFiles } from "../utils/loadFiles";
+import { join } from "path";
 import { BS_GUILD_ID } from "../constants/guilds";
 import type {
   ApplicationCommand,
@@ -74,9 +75,9 @@ function startCommandHandler(client: Client): void {
     "ready",
     async() => {
       // Loading commands from /commands.
-      await loadFiles<Command>(commands, "./commands");
+      await loadFiles<Command>(commands, join(__dirname, "..", "commands"));
       const s = commands.size === 1 ? "" : "s";
-      console.log(`${commands.size} commands${s} loaded.`);
+      console.log(`${commands.size} command${s} loaded.`);
 
       // Setting the commands as slash commands in the selected guild.
       commandData = await setCommands(commands);
