@@ -1,5 +1,6 @@
 import { Client, Intents } from "discord.js";
-import { startHandler } from "./internals/commandHandler.js";
+import { startCommandHandler } from "./internals/commandHandler";
+import { startEventHandler } from "./internals/eventHandler";
 
 const client = new Client({
   intents: [
@@ -9,5 +10,7 @@ const client = new Client({
   ]
 });
 
-startHandler(client);
+startEventHandler(client);
+startCommandHandler(client);
+
 client.login(process.env.TOKEN);

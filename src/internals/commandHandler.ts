@@ -1,29 +1,20 @@
-import { ApplicationCommand, Collection, GuildApplicationCommandPermissionData, Snowflake } from "discord.js";
-import { readdir } from "fs/promises";
+import { Collection } from "discord.js";
+import { loadFiles } from "../utils/loadFiles";
+import { join } from "path";
 import { BS_GUILD_ID } from "../constants/guilds";
-import type { ApplicationCommandData, Client } from "discord.js";
+import type {
+  ApplicationCommand,
+  ApplicationCommandData,
+  Client,
+  GuildApplicationCommandPermissionData,
+  Snowflake
+} from "discord.js";
 import type { Command } from "../types/Command";
 
-function startHandler(client: Client): void {
+function startCommandHandler(client: Client): Collection<string, Command> {
 
   const commands = new Collection<string, Command>();
   let commandData: Collection<Snowflake, ApplicationCommand>;
-
-  async function loadCommands(commands: Collection<string, Command>, path = "./commands"): Promise<void> {
-    const files = await readdir(path, { withFileTypes: true });
-    for (const element of files) {
-      if (element.isFile() && element.name.endsWith(".js")) {
-        const { command } = await import(`.${path}/${element.name}`);
-        commands.set(
-          command.name.toLowerCase(),
-          command
-        );
-      }
-      else if (element.isDirectory()) {
-        await loadCommands(commands, `${path}/${element.name}`);
-      }
-    }
-  }
 
   async function setCommands(commands: Collection<string, Command>): Promise<Collection<Snowflake, ApplicationCommand>> {
     const cmdArr: ApplicationCommandData[] = commands.array(),
@@ -84,16 +75,15 @@ function startHandler(client: Client): void {
     "ready",
     async() => {
       // Loading commands from /commands.
-      await loadCommands(commands);
+      await loadFiles<Command>(commands, join(__dirname, "..", "commands"));
       const s = commands.size === 1 ? "" : "s";
-      console.log(`${commands.size} commands${s} loaded.`);
+      console.log(`${commands.size} command${s} loaded.`);
 
       // Setting the commands as slash commands in the selected guild.
       commandData = await setCommands(commands);
 
       // Configuring permissions for every command.
       await setPermissions(commands, commandData);
-      console.log("The bot is ready");
 
     }
   );
@@ -116,8 +106,11 @@ function startHandler(client: Client): void {
 
     }
   );
+
+  return commands;
+
 }
 
 export {
-  startHandler
+  startCommandHandler
 };
