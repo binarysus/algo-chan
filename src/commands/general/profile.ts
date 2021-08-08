@@ -1,7 +1,7 @@
-import responses from "../../constants/responses";
-import type { Command } from "../../types/Command";
-import fetchUser from "../../utils/fetchUser";
-import profileEmbed from "../../utils/profileEmbed";
+import responses from "#constants/responses";
+import type { Command } from "#types/Command";
+import fetchUser from "#utils/fetchUser";
+import profileEmbed from "#utils/profileEmbed";
 const command: Command = {
   name: "profile",
   description: "get the binarysearch profile of a user",

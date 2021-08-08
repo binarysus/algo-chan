@@ -1,7 +1,7 @@
 import { Collection } from "discord.js";
-import { loadFiles } from "../utils/loadFiles";
+import { loadFiles } from "#utils/loadFiles";
 import { join } from "path";
-import { BS_GUILD_ID } from "../constants/guilds";
+import { BS_GUILD_ID } from "#constants/guilds";
 import type {
   ApplicationCommand,
   ApplicationCommandData,
@@ -9,7 +9,7 @@ import type {
   GuildApplicationCommandPermissionData,
   Snowflake
 } from "discord.js";
-import type { Command } from "../types/Command";
+import type { Command } from "#types/Command";
 
 function startCommandHandler(client: Client): Collection<string, Command> {
 

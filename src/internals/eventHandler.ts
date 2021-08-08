@@ -1,8 +1,8 @@
 import { Collection } from "discord.js";
-import { loadFiles } from "../utils/loadFiles";
+import { loadFiles } from "#utils/loadFiles";
 import { join } from "path";
 import type { Client, ClientEvents } from "discord.js";
-import type { DiscordEvent } from "../types/DiscordEvent";
+import type { DiscordEvent } from "#types/DiscordEvent";
 
 async function startEventHandler(client: Client): Promise<Collection<string, DiscordEvent>> {
 

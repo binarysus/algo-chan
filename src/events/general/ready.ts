@@ -1,4 +1,4 @@
-import { DiscordEvent } from "../../types/DiscordEvent";
+import { DiscordEvent } from "#types/DiscordEvent";
 
 const event: DiscordEvent = {
   name: "a",

@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/binarysus/algo-chan#readme",
   "imports": {
-    "#commands": "./dist/src/commands",
-    "#types": "./dist/src/types"
+    "#commands/*": "./dist/commands/*.js",
+    "#constants/*": "./dist/constants/*.js",
+    "events/*": "./dist/events/*.js",
+    "#internals/*": "./dist/internals/*.js",
+    "#types/*": "./dist/types/*.js",
+    "#utils/*": "./dist/utils/*.js"
   },
   "dependencies": {
     "discord.js": "^13.0.1",

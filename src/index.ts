@@ -1,6 +1,6 @@
 import { Client, Intents } from "discord.js";
-import { startCommandHandler } from "./internals/commandHandler";
-import { startEventHandler } from "./internals/eventHandler";
+import { startCommandHandler } from "#internals/commandHandler";
+import { startEventHandler } from "#internals/eventHandler";
 
 const client = new Client({
   intents: [

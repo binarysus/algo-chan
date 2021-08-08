@@ -1,8 +1,8 @@
 import { MessageEmbed } from "discord.js";
-import { zero_width_space } from "../constants/unicodes";
-import BsUser from "../constants/bsUser";
-import emotes from "../constants/emotes";
-import questions from "../constants/questions";
+import { zero_width_space } from "#constants/unicodes";
+import BsUser from "#constants/bsUser";
+import emotes from "#constants/emotes";
+import questions from "#constants/questions";
 
 enum Difficulty {
   Easy = "Easy",
