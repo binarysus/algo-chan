@@ -1,4 +1,5 @@
 import { MessageEmbed } from "discord.js";
+import { zero_width_space } from "../constants/unicodes";
 import BsUser from "../constants/bsUser";
 import emotes from "../constants/emotes";
 import questions from "../constants/questions";
@@ -17,7 +18,7 @@ function addProgressBar(difficulty: Difficulty, value: number, embed: MessageEmb
 
   embed.addField(
     `${difficulty} (${value} / ${questions[difficulty]})`,
-    emotes[difficulty].repeat(d) + emotes["None"].repeat(12 - d)
+    zero_width_space + emotes[difficulty].repeat(d) + emotes["None"].repeat(12 - d)
   );
 }
 

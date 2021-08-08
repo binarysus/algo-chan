@@ -1,8 +1,8 @@
 import responses from "../../constants/responses";
 import type { Command } from "../../types/Command";
-import fetchUser from "../../util/fetchUser";
-import profileEmbed from "../../util/profileEmbed";
-export const command: Command = {
+import fetchUser from "../../utils/fetchUser";
+import profileEmbed from "../../utils/profileEmbed";
+const command: Command = {
   name: "profile",
   description: "get the binarysearch profile of a user",
   options: [
@@ -25,3 +25,5 @@ export const command: Command = {
     }
   }
 };
+
+export default command;

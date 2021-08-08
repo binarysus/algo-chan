@@ -17,7 +17,7 @@ function startCommandHandler(client: Client): Collection<string, Command> {
   let commandData: Collection<Snowflake, ApplicationCommand>;
 
   async function setCommands(commands: Collection<string, Command>): Promise<Collection<Snowflake, ApplicationCommand>> {
-    const cmdArr: ApplicationCommandData[] = commands.array(),
+    const cmdArr: ApplicationCommandData[] = [...commands.values()],
       guild = client.guilds.cache.get(BS_GUILD_ID);
 
     if (!guild) {
