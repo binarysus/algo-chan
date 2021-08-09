@@ -9,6 +9,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended"
   ],
   rules: {
+    "@typescript-eslint/no-extra-parens": "error",
     "@typescript-eslint/semi": "error",
     "arrow-spacing": "error",
     "block-spacing": "error",
@@ -17,7 +18,7 @@ module.exports = {
     "eol-last": ["error", "always"],
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
-    "no-extra-parens": "error",
+    "no-extra-parens": "off",
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1, "maxBOF": 0 }],
     "no-tabs": "error",
     "no-trailing-spaces": "error",
