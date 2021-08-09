@@ -4,7 +4,7 @@ import { URL } from "url";
 import { cpp } from "#constants/cpp";
 import { CPPREFERENCE } from "#constants/urls";
 import type { Command } from "#types/Command";
-import lcsSort from "#utils/lcsSort";
+import { lcsSort } from "#utils/lcsSort";
 
 const command: Command = {
   name: "cpp",

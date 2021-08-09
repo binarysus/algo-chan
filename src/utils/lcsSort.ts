@@ -16,7 +16,7 @@ function lcs(xs: string, ys: string) {
   return dp[xs.length][ys.length];
 }
 
-export default function(str: string, arr: string[]): void {
+export function lcsSort(str: string, arr: string[]): void {
   arr.sort((xs, ys) => {
     const x = lcs(xs, str);
     const y = lcs(ys, str);
