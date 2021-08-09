@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import BSUser from "../constants/bsUser";
-import urls from "../constants/urls";
+import BSUser from "#constants/bsUser";
+import urls from "#constants/urls";
 
 export default async function fetchUser(username: string): Promise<null | BSUser> {
   const url = urls.BINARYSEARCH_API.replace("USERNAME", username);

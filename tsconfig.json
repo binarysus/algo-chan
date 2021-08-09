@@ -12,9 +12,14 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noEmitHelpers": true,
+    "baseUrl": "src",
     "paths": {
-      "#commands": ["./src/commands"],
-      "#types": ["./src/types/Command"]
+      "#commands/*": ["commands/*"],
+      "#constants/*": ["constants/*"],
+      "#events/*": ["events/*"],
+      "#internals/*": ["internals/*"],
+      "#types/*": ["types/*"],
+      "#utils/*": ["utils/*"]
     }
   },
   "include": [
