@@ -1,4 +1,4 @@
-export default {
+export const difficultyEmotes = {
   "Easy": "<:bs_easy:863762378306486302>",
   "Medium": "<:bs_medium:863762378415538196>",
   "Hard": "<:bs_hard:863762378683318292>",

@@ -1,7 +1,8 @@
-import responses from "#constants/responses";
+import { PROFILE_NOT_FOUND } from "#constants/responses";
+import { fetchUser } from "#utils/fetchUser";
+import { buildProfileEmbed } from "#utils/profileEmbed";
 import type { Command } from "#types/Command";
-import fetchUser from "#utils/fetchUser";
-import profileEmbed from "#utils/profileEmbed";
+
 const command: Command = {
   name: "profile",
   description: "get the binarysearch profile of a user",
@@ -18,10 +19,10 @@ const command: Command = {
     const value = interaction.options.get("user")?.value;
     const data = await fetchUser(value as string);
     if(!data) {
-      interaction.reply(responses.PROFILE_NOT_FOUND);
+      interaction.reply({ content: PROFILE_NOT_FOUND, ephemeral: true });
     }
     else {
-      interaction.reply({ embeds: [profileEmbed(data)] });
+      interaction.reply({ embeds: [buildProfileEmbed(data)] });
     }
   }
 };
