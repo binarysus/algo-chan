@@ -1,8 +1,8 @@
 import { MessageEmbed } from "discord.js";
 import { URL } from "url";
 
-import cpp from "#constants/cpp";
-import urls from "#constants/urls";
+import { cpp } from "#constants/cpp";
+import { CPPREFERENCE } from "#constants/urls";
 import type { Command } from "#types/Command";
 import lcsSort from "#utils/lcsSort";
 
@@ -26,10 +26,10 @@ const command: Command = {
     const matches = paths.slice(0, 6);
     const hrefs: string[] = matches.map(m => {
       const path = (cpp as { [key: string]: string })[m];
-      return new URL(path, urls.CPPREFERENCE).href;
+      return new URL(path, CPPREFERENCE).href;
     });
 
-    const desc = matches.map((m, i) => `[${m}](${hrefs[i]})`).join("\n");
+    const desc = matches.map((m, i) => `[\`${m}\`](${hrefs[i]})`).join("\n");
     const embed = new MessageEmbed()
       .setTitle("Search results")
       .setDescription(desc);

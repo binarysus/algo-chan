@@ -1,4 +1,4 @@
-export default {
+export const cpp = {
   "#define directive": "preprocessor/replace",
   "#error directive": "preprocessor/error",
   "#include directive": "preprocessor/include",
