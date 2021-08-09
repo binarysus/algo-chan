@@ -6,7 +6,7 @@ interface Badge {
   count: number,
 }
 
-export default interface BSUser {
+export interface BSUser {
     id: number,
     username: string,
     isAdmin: boolean,
