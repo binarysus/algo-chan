@@ -16,8 +16,8 @@ const command: Command = {
   ],
   permissions: [],
   async execute(interaction) {
-    const value = interaction.options.get("user")?.value;
-    const data = await fetchUser(value as string);
+    const value = interaction.options.getString("user", true);
+    const data = await fetchUser(value);
     if(!data) {
       interaction.reply({ content: PROFILE_NOT_FOUND, ephemeral: true });
     }
