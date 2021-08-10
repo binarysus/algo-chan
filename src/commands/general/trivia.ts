@@ -1,7 +1,7 @@
 import type { Message, MessageActionRow, MessageButton } from "discord.js";
 
-import { buildButtons } from "#utils/buildButtons";
 import type { Command } from "#types/Command";
+import { buildButtons } from "#utils/buildButtons";
 import { questions } from "#constants/trivia";
 
 function getButton(components: MessageActionRow[], i: number): MessageButton {
@@ -37,14 +37,14 @@ const command: Command = {
       if (chosenButton.label == answer) {
         chosenButton.setStyle("SUCCESS");
       } else {
-        chosenButton.setStyle("DANGER");
-
         const answerIndex = choices.indexOf(answer);
         const answerButton = getButton(components, answerIndex);
+
         answerButton.setStyle("SUCCESS");
+        chosenButton.setStyle("DANGER");
       }
 
-      await i.update({ components: components });
+      await i.update({ components });
     });
   }
 };
