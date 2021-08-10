@@ -36,14 +36,13 @@ const command: Command = {
 
       if (chosenButton.label == answer) {
         chosenButton.setStyle("SUCCESS");
-        return;
+      } else {
+        chosenButton.setStyle("DANGER");
+
+        const answerIndex = choices.indexOf(answer);
+        const answerButton = getButton(components, answerIndex);
+        answerButton.setStyle("SUCCESS");
       }
-
-      chosenButton.setStyle("DANGER");
-
-      const answerIndex = choices.indexOf(answer);
-      const answerButton = getButton(components, answerIndex);
-      answerButton.setStyle("SUCCESS");
 
       await i.update({ components: components });
     });
