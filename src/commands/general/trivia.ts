@@ -32,16 +32,14 @@ const command: Command = {
 
     collector.on("collect", async i => {
       const chosenIndex = choices.indexOf(i.customId);
-      const chosenButton = getButton(components, chosenIndex);
+      const answerIndex = choices.indexOf(answer);
 
-      if (chosenButton.label == answer) {
-        chosenButton.setStyle("SUCCESS");
-      } else {
-        const answerIndex = choices.indexOf(answer);
-        const answerButton = getButton(components, answerIndex);
+      for (let i = 0; i < choices.length; i++) {
+        const button = getButton(components, i);
+        button.setDisabled(true);
 
-        answerButton.setStyle("SUCCESS");
-        chosenButton.setStyle("DANGER");
+        if (i == answerIndex) button.setStyle("SUCCESS");
+        else if (i == chosenIndex) button.setStyle("DANGER");
       }
 
       await i.update({ components });
