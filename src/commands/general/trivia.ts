@@ -1,7 +1,7 @@
 import type { Message, MessageActionRow, MessageButton } from "discord.js";
 
 import type { Command } from "#types/Command";
-import { buildButtons } from "#utils/buildButtons";
+import { buildTriviaButtons } from "#utils/buildTriviaButtons";
 import { questions } from "#constants/trivia";
 
 function getButton(components: MessageActionRow[], i: number): MessageButton {
@@ -17,7 +17,7 @@ const command: Command = {
     const rng = Math.floor(Math.random() * questions.length);
     const { title, choices, answer } = questions[rng];
 
-    const components = buildButtons(choices);
+    const components = buildTriviaButtons(choices);
     const message = await interaction.reply({
       content: title,
       components,

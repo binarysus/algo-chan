@@ -1,6 +1,6 @@
 import { MessageActionRow, MessageButton } from "discord.js";
 
-export function buildButtons(choices: string[]): MessageActionRow[] {
+export function buildTriviaButtons(choices: string[]): MessageActionRow[] {
   const rows = [new MessageActionRow(), new MessageActionRow()];
   for (let i = 0; i < choices.length; i++) {
     const button = new MessageButton()
