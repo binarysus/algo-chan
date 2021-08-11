@@ -28,7 +28,7 @@
     "#utils/*": "./dist/utils/*.js"
   },
   "dependencies": {
-    "discord.js": "^13.0.1",
+    "discord.js": "^13.1.0-dev.1628683680.75b48d8",
     "env-cmd": "^10.1.0",
     "node-fetch": "^2.6.1"
   },
