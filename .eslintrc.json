@@ -1,0 +1,12 @@
+{
+	"extends": "marine",
+  "rules": {
+    "no-negated-condition": "off",
+    "comma-dangle": ["error", "never"],
+    "no-duplicate-imports": "off",
+    "@typescript-eslint/no-duplicate-imports": ["error"],
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/quotes": ["error", "double"]
+  }
+}
