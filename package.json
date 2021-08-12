@@ -5,9 +5,11 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "rm -rf dist && npx tsc",
-    "start": "npx env-cmd node .",
+    "lint:fix": "npx eslint src --fix",
+    "format": "npx prettier src -w",
+    "format:check": "npx prettier src -c",
     "lint": "npx eslint src",
-    "flint": "npx eslint src --fix"
+    "start": "npx env-cmd node ."
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,10 @@
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
+    "eslint-config-marine": "^9.0.6",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   }
 }
