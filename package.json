@@ -5,9 +5,11 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "rm -rf dist && npx tsc",
-    "start": "npx env-cmd node .",
+    "lint:fix": "npx eslint src --fix",
+    "format": "npx prettier src -w",
+    "format:check": "npx prettier src -c",
     "lint": "npx eslint src",
-    "flint": "npx eslint src --fix"
+    "start": "npx env-cmd node ."
   },
   "repository": {
     "type": "git",
