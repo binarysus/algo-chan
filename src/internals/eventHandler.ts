@@ -1,6 +1,7 @@
 import { Collection } from "discord.js";
-import { loadFiles } from "#utils/loadFiles";
 import { join } from "path";
+import { loadFiles } from "#utils/loadFiles";
+
 import type { Client, ClientEvents } from "discord.js";
 import type { DiscordEvent } from "#types/DiscordEvent";
 

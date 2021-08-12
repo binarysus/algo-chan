@@ -1,7 +1,8 @@
-import { Collection } from "discord.js";
-import { loadFiles } from "#utils/loadFiles";
-import { join } from "path";
 import { BS_GUILD_ID } from "#constants/guilds";
+import { Collection } from "discord.js";
+import { join } from "path";
+import { loadFiles } from "#utils/loadFiles";
+
 import type {
 	ApplicationCommand,
 	ApplicationCommandData,

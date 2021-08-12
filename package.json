@@ -28,11 +28,13 @@
     "#utils/*": "./dist/utils/*.js"
   },
   "dependencies": {
+    "color-convert": "^2.0.1",
     "discord.js": "^13.0.1",
     "env-cmd": "^10.1.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "@types/color-convert": "^2.0.0",
     "@types/node-fetch": "^2.5.11",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",

@@ -1,4 +1,4 @@
-import { ApplicationCommandData, ApplicationCommandPermissionData, CommandInteraction } from "discord.js";
+import type { ApplicationCommandData, ApplicationCommandPermissionData, CommandInteraction } from "discord.js";
 interface Command extends ApplicationCommandData {
 	nsfw?: boolean;
 	ownerOnly?: boolean;

@@ -1,6 +1,7 @@
 import { PROFILE_NOT_FOUND } from "#constants/responses";
-import { fetchUser } from "#utils/fetchUser";
 import { buildProfileEmbed } from "#utils/profileEmbed";
+import { fetchUser } from "#utils/fetchUser";
+
 import type { Command } from "#types/Command";
 
 const command: Command = {

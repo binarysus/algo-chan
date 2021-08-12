@@ -1,8 +1,9 @@
-import { readdir } from "fs/promises";
 import { join } from "path";
+import { readdir } from "fs/promises";
+
 import type { Collection } from "discord.js";
-import type { DiscordEvent } from "#types/DiscordEvent";
 import type { Command } from "#types/Command";
+import type { DiscordEvent } from "#types/DiscordEvent";
 
 async function loadFiles<T extends Command | DiscordEvent>(
 	collection: Collection<string, T>,

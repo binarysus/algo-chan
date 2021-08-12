@@ -1,10 +1,11 @@
+import { CPPREFERENCE } from "#constants/urls";
 import { MessageEmbed } from "discord.js";
 import { URL } from "url";
-
 import { cpp } from "#constants/cpp";
-import { CPPREFERENCE } from "#constants/urls";
-import type { Command } from "#types/Command";
+import { defaultEmbedColor } from "#constants/colors";
 import { lcsSort } from "#utils/lcsSort";
+
+import type { Command } from "#types/Command";
 
 const command: Command = {
 	name: "cpp",
@@ -30,7 +31,7 @@ const command: Command = {
 		});
 
 		const desc = matches.map((m, i) => `[\`${m}\`](${hrefs[i]})`).join("\n");
-		const embed = new MessageEmbed().setTitle("Search results").setDescription(desc);
+		const embed = new MessageEmbed().setTitle("Search results").setDescription(desc).setColor(defaultEmbedColor);
 
 		await interaction.reply({ embeds: [embed] });
 	}
