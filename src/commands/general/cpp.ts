@@ -3,6 +3,7 @@ import { URL } from "url";
 
 import { cpp } from "#constants/cpp";
 import { CPPREFERENCE } from "#constants/urls";
+import { defaultEmbedColor } from "#constants/colors";
 import type { Command } from "#types/Command";
 import { lcsSort } from "#utils/lcsSort";
 
@@ -32,7 +33,8 @@ const command: Command = {
     const desc = matches.map((m, i) => `[\`${m}\`](${hrefs[i]})`).join("\n");
     const embed = new MessageEmbed()
       .setTitle("Search results")
-      .setDescription(desc);
+      .setDescription(desc)
+      .setColor(defaultEmbedColor);
 
     await interaction.reply({ embeds: [embed] });
   }
