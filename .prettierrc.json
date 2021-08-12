@@ -1,5 +1,4 @@
 {
-    "extends": "marine/prettier",
     "semi": true,
     "printWidth": 120,
     "useTabs": true,
@@ -7,5 +6,6 @@
     "quoteProps": "consistent",
     "trailingComma": "none",
     "endOfLine": "lf",
+    "singleQuote": false,
     "bracketSpacing": true
 }
