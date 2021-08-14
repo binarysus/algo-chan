@@ -5,19 +5,21 @@ import { cpp } from "#constants/cpp";
 import { defaultEmbedColor } from "#constants/colors";
 import { lcsSort } from "#utils/lcsSort";
 
-import type { Command } from "#types/Command";
+import type { SlashCommand } from "#types/Commands";
 
-const command: Command = {
-	name: "cpp",
-	description: "search the C++ documentation",
-	options: [
-		{
-			name: "query",
-			type: "STRING",
-			description: "the search query",
-			required: true
-		}
-	],
+const command: SlashCommand = {
+	data: {
+		name: "cpp",
+		description: "search the C++ documentation",
+		options: [
+			{
+				name: "query",
+				type: "STRING",
+				description: "the search query",
+				required: true
+			}
+		]
+	},
 	permissions: [],
 	async execute(interaction) {
 		const query = interaction.options.getString("query") ?? "std";

@@ -13,17 +13,18 @@ async function startEventHandler(client: Client): Promise<Collection<string, Dis
 	const onceEvents = new Collection<keyof ClientEvents, DiscordEvent[]>();
 
 	for (const [, eventFile] of events) {
-		if (eventFile.once) {
-			const vals = onceEvents.get(eventFile.event);
+		const { data } = eventFile;
+		if (data.once) {
+			const vals = onceEvents.get(data.event);
 			if (!vals) {
-				onceEvents.set(eventFile.event, [eventFile]);
+				onceEvents.set(data.event, [eventFile]);
 			} else {
 				vals.push(eventFile);
 			}
 		} else {
-			const vals = onEvents.get(eventFile.event);
+			const vals = onEvents.get(data.event);
 			if (!vals) {
-				onEvents.set(eventFile.event, [eventFile]);
+				onEvents.set(data.event, [eventFile]);
 			} else {
 				vals.push(eventFile);
 			}
