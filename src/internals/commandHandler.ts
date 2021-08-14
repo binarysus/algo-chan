@@ -52,7 +52,8 @@ function startCommandHandler(client: Client) {
 	}
 
 	async function setPermissions(
-		commands: Collection<string, SlashCommand>,
+		slashCommands: Collection<string, SlashCommand>,
+		contextCommands: Collection<string, ContextMenuCommand>,
 		commandData: Collection<Snowflake, ApplicationCommand>
 	): Promise<void> {
 		const permissions: GuildApplicationCommandPermissionData[] = [];
@@ -64,21 +65,20 @@ function startCommandHandler(client: Client) {
 			return;
 		}
 		for (const [key, val] of commandData) {
-			const command = commands.get(val.name);
+			const command = slashCommands.get(val.name) ?? contextCommands.get(val.name);
 			if (!command || !command.permissions) continue;
 			const data: GuildApplicationCommandPermissionData = {
 				id: key,
 				permissions: command.permissions
 			};
 			permissions.push(data);
-			const permSetInfo = await guild.commands.permissions.set({ fullPermissions: permissions });
-			if (permSetInfo.size === 0) {
-				console.log("No permissions have been set.");
-				return;
-			}
-			console.log("Permissions set successfully.");
+		}
+		const permSetInfo = await guild.commands.permissions.set({ fullPermissions: permissions });
+		if (permSetInfo.size === 0) {
+			console.log("No permissions have been set.");
 			return;
 		}
+		console.log("Permissions set successfully.");
 	}
 
 	client.once("ready", async () => {
@@ -94,7 +94,7 @@ function startCommandHandler(client: Client) {
 			commandData = await setCommands(slashCommands, contextCommands);
 
 			// Configuring permissions for every command.
-			await setPermissions(slashCommands, commandData);
+			await setPermissions(slashCommands, contextCommands, commandData);
 		} else {
 			console.log("No commands set.");
 		}

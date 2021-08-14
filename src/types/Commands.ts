@@ -17,6 +17,7 @@ type ContextMenuItem = MessageApplicationCommandData | UserApplicationCommandDat
 
 interface ContextMenuCommand {
 	data: ContextMenuItem;
+	permissions?: ApplicationCommandPermissionData[];
 	execute(interaction: ContextMenuInteraction): Promise<void>;
 }
 
