@@ -2,16 +2,18 @@ import { buildTriviaButtons } from "#utils/buildTriviaButtons";
 import { questions } from "#constants/trivia";
 
 import type { Message, MessageActionRow, MessageButton } from "discord.js";
-import type { Command } from "#types/Command";
+import type { SlashCommand } from "#types/Commands";
 
 function getButton(components: MessageActionRow[], i: number): MessageButton {
 	const component = components[i % 2].components[i >> 1];
 	return component as MessageButton;
 }
 
-const command: Command = {
-	name: "trivia",
-	description: "play the time complexity trivia",
+const command: SlashCommand = {
+	data: {
+		name: "trivia",
+		description: "play the time complexity trivia"
+	},
 	permissions: [],
 	async execute(interaction) {
 		const rng = Math.floor(Math.random() * questions.length);

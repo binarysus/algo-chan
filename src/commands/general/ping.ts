@@ -1,15 +1,17 @@
-import type { Command } from "#types/Command";
+import type { SlashCommand } from "#types/Commands";
 
-const command: Command = {
-	name: "ping",
-	description: "pong",
-	options: [
-		{
-			name: "ephemeral",
-			type: "BOOLEAN",
-			description: "do you want this message to be ephemeral?"
-		}
-	],
+const command: SlashCommand = {
+	data: {
+		name: "ping",
+		description: "pong",
+		options: [
+			{
+				name: "ephemeral",
+				type: "BOOLEAN",
+				description: "do you want this message to be ephemeral?"
+			}
+		]
+	},
 	permissions: [],
 	async execute(interaction) {
 		const eph = interaction.options.get("ephemeral")?.value ?? false;

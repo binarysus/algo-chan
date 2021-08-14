@@ -9,7 +9,9 @@
     "format": "npx prettier src -w",
     "format:check": "npx prettier src -c",
     "lint": "npx eslint src",
-    "start": "npx env-cmd node ."
+    "start": "npx env-cmd node .",
+    "start:no-edit": "npx env-cmd node . --no-edit",
+    "start:type-change": "npx env-cmd node . --type-change"
   },
   "repository": {
     "type": "git",
