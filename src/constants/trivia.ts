@@ -996,8 +996,8 @@ export const questions = [
 	},
 	{
 		title: "Topological sort based algorithm for shortest path on DAG (weighted, but without cycles): Time",
-		choices: ["O(|V|)", "O(|V| ⋅ |E|)", "O(|V|² ⋅ E)", "O(|V|²)", "O((|V|+|E|)", "O(|E| + |V| log(|V|))"],
-		answer: "O((|V|+|E|)"
+		choices: ["O(|V|)", "O(|V| ⋅ |E|)", "O(|V|² ⋅ E)", "O(|V|²)", "O(|V|+|E|)", "O(|E| + |V| log(|V|))"],
+		answer: "O(|V|+|E|)"
 	},
 	{
 		title: "Topological sort based algorithm for shortest path on DAG (weighted, but without cycles): Space (Worst)",
