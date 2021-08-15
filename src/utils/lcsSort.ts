@@ -1,17 +1,14 @@
-function lcs(xs: string, ys: string) {
-	const dp: number[][] = [];
-	for (let i = 0; i <= xs.length; i++) {
-		dp[i] = [];
-		for (let j = 0; j <= ys.length; j++) {
-			if (i * j === 0) {
-				dp[i][j] = 0;
-			} else {
-				dp[i][j] = xs[i - 1] === ys[j - 1] ? 1 + dp[i - 1][j - 1] : Math.max(dp[i - 1][j], dp[i][j - 1]);
-			}
+function lcs(xs: string, ys: string): number {
+	let prev: number[] = Array(ys.length + 1).fill(0);
+	for (const x of xs) {
+		const curr = Array(ys.length + 1);
+		curr[0] = 0;
+		for (let j = 0; j < ys.length; j++) {
+			curr[j + 1] = Math.max(curr[j], prev[j + 1], prev[j] + Number(x === ys[j]));
 		}
+		prev = curr;
 	}
-
-	return dp[xs.length][ys.length];
+	return prev[ys.length];
 }
 
 export function lcsSort(str: string, arr: string[]): void {
