@@ -20,6 +20,7 @@
 		"@typescript-eslint/no-duplicate-imports": ["error"],
 		"@typescript-eslint/no-floating-promises": "off",
 		"@typescript-eslint/require-await": "off",
-		"@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true }]
+		"@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true }],
+		"@typescript-eslint/prefer-regexp-exec": "off"
 	}
 }
