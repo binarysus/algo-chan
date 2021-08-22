@@ -24,14 +24,17 @@
   },
   "homepage": "https://github.com/binarysus/algo-chan#readme",
   "imports": {
+		"#buttons/*": "./dist/buttons/*.js",
+		"#classes/*": "./dist/classes/*.js",
     "#commands/*": "./dist/commands/*.js",
     "#constants/*": "./dist/constants/*.js",
-    "events/*": "./dist/events/*.js",
+    "#events/*": "./dist/events/*.js",
     "#internals/*": "./dist/internals/*.js",
     "#types/*": "./dist/types/*.js",
     "#utils/*": "./dist/utils/*.js"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
     "color-convert": "^2.0.1",
     "discord.js": "^13.0.1",
     "env-cmd": "^10.1.0",
