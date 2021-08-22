@@ -1,5 +1,5 @@
 import { Client, Intents } from "discord.js";
-import { Logger, logLevel } from "#classes/Logger";
+import { LogLevel, Logger } from "#classes/Logger";
 import { startButtonHandler } from "#internals/buttonHandler";
 import { startCommandHandler } from "#internals/commandHandler";
 import { startEventHandler } from "#internals/eventHandler";
@@ -14,9 +14,7 @@ const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
 
-client.logger = new Logger();
-
-client.logger.logLevel = logLevel.ALL;
+client.logger = new Logger(LogLevel.ALL);
 
 startEventHandler(client);
 startCommandHandler(client);

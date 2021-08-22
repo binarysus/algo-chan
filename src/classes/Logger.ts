@@ -2,7 +2,7 @@ import chalk from "chalk";
 
 import type { Chalk } from "chalk";
 
-export enum logLevel {
+export enum LogLevel {
 	ALL,
 	DEBUG,
 	INFO,
@@ -13,7 +13,11 @@ export enum logLevel {
 }
 
 export class Logger {
-	public logLevel: logLevel = logLevel.NONE;
+	public logLevel;
+
+	public constructor(level: LogLevel = LogLevel.NONE) {
+		this.logLevel = level;
+	}
 
 	private log(input: string, time: boolean, modifier: string, colorFn: Chalk) {
 		let timeString;
@@ -26,27 +30,27 @@ export class Logger {
 	}
 
 	public debug(input: string, time = true) {
-		if (this.logLevel > logLevel.DEBUG) return;
+		if (this.logLevel > LogLevel.DEBUG) return;
 		this.log(input, time, "DEBUG", chalk.yellow);
 	}
 
 	public info(input: string, time = true) {
-		if (this.logLevel > logLevel.INFO) return;
+		if (this.logLevel > LogLevel.INFO) return;
 		this.log(input, time, "INFO", chalk.green);
 	}
 
 	public warn(input: string, time = true) {
-		if (this.logLevel > logLevel.WARN) return;
+		if (this.logLevel > LogLevel.WARN) return;
 		this.log(input, time, "WARN", chalk.hex("#FC7F03"));
 	}
 
 	public error(input: string, time = true) {
-		if (this.logLevel > logLevel.ERROR) return;
+		if (this.logLevel > LogLevel.ERROR) return;
 		this.log(input, time, "ERR", chalk.red);
 	}
 
 	public fatal(input: string, time = true) {
-		if (this.logLevel > logLevel.FATAL) return;
+		if (this.logLevel > LogLevel.FATAL) return;
 		this.log(input, time, "FATAL", chalk.bgRedBright.black);
 	}
 }
