@@ -83,8 +83,8 @@ function startCommandHandler(client: Client) {
 
 	client.once("ready", async () => {
 		// Loading commands from /commands.
-		await loadFiles<SlashCommand>(slashCommands, join(__dirname, "..", "commands"));
-		await loadFiles<ContextMenuCommand>(contextCommands, join(__dirname, "..", "context-commands"));
+		await loadFiles(slashCommands, join(__dirname, "..", "commands"));
+		await loadFiles(contextCommands, join(__dirname, "..", "context-commands"));
 
 		console.log(`${slashCommands.size} slash command${plural(slashCommands.size)} loaded.`);
 		console.log(`${contextCommands.size} context menu item${plural(contextCommands.size)} loaded.`);
