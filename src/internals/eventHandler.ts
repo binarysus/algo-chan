@@ -9,7 +9,7 @@ async function startEventHandler(client: Client): Promise<Collection<string, Dis
 	const events = new Collection<string, DiscordEvent>();
 	await loadFiles(events, join(__dirname, "..", "events"), client);
 
-	client.logger.info(`${events.size} event${events.size === 1 ? "" : "s"} loaded successfully.`);
+	client.logger.info(`${events.size} event${events.size === 1 ? "" : "s"} loaded.`);
 
 	const onEvents = new Collection<keyof ClientEvents, DiscordEvent[]>();
 	const onceEvents = new Collection<keyof ClientEvents, DiscordEvent[]>();
