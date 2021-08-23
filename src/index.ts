@@ -1,18 +1,29 @@
+<<<<<<< HEAD
 import { Client, Intents, Interaction, MessageEmbed, MessageAttachment } from "discord.js";
+=======
+import { Client, Intents } from "discord.js";
+import { LogLevel, Logger } from "#classes/Logger";
+import { startButtonHandler } from "#internals/buttonHandler";
+>>>>>>> 2f9925f7102c6704b7bd656d5f3a5fe7a98c81a5
 import { startCommandHandler } from "#internals/commandHandler";
 import { startEventHandler } from "#internals/eventHandler";
 import { inspect } from "util";
 
+declare module "discord.js" {
+	interface Client {
+		logger: Logger;
+	}
+}
+
 const client = new Client({
-  intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_MESSAGES
-  ]
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
+
+client.logger = new Logger(LogLevel.ALL);
 
 startEventHandler(client);
 startCommandHandler(client);
+startButtonHandler(client);
 
 client.on("interaction", async(interaction: Interaction) => {
   if(interaction.isContextMenu()) {

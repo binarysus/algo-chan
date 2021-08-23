@@ -1,116 +1,121 @@
-import { Collection } from "discord.js";
-import { loadFiles } from "#utils/loadFiles";
-import { join } from "path";
 import { BS_GUILD_ID } from "#constants/guilds";
+import { Collection } from "discord.js";
+import { join } from "path";
+import { loadFiles } from "#utils/loadFiles";
+
 import type {
-  ApplicationCommand,
-  ApplicationCommandData,
-  Client,
-  GuildApplicationCommandPermissionData,
-  Snowflake
+	ApplicationCommand,
+	ApplicationCommandData,
+	Client,
+	GuildApplicationCommandPermissionData,
+	Snowflake
 } from "discord.js";
-import type { Command } from "#types/Command";
+import type { ContextMenuCommand, SlashCommand } from "#types/Commands";
 
-function startCommandHandler(client: Client): Collection<string, Command> {
+const plural = (x: number) => (x === 1 ? "" : "s");
 
-  const commands = new Collection<string, Command>();
-  let commandData: Collection<Snowflake, ApplicationCommand>;
+function startCommandHandler(client: Client) {
+	const slashCommands = new Collection<string, SlashCommand>();
+	const contextCommands = new Collection<string, ContextMenuCommand>();
+	let commandData: Collection<Snowflake, ApplicationCommand>;
 
-  async function setCommands(commands: Collection<string, Command>): Promise<Collection<Snowflake, ApplicationCommand>> {
-    const cmdArr: ApplicationCommandData[] = [...commands.values()],
-      guild = client.guilds.cache.get(BS_GUILD_ID);
+	async function setCommands(
+		slashCommands: Collection<string, SlashCommand>,
+		contextCommands: Collection<string, ContextMenuCommand>
+	): Promise<Collection<Snowflake, ApplicationCommand>> {
+		const slashCmdArr: ApplicationCommandData[] = slashCommands.map((x) => x.data);
+		const contextCmdArr: ApplicationCommandData[] = contextCommands.map((x) => x.data);
+		const cmdArr = [...slashCmdArr, ...contextCmdArr];
+		const guild = client.guilds.cache.get(BS_GUILD_ID);
 
-    if (!guild) {
+		if (!guild) {
+			console.warn("Guild could not be detected.");
+			return new Collection();
+		}
+		if (process.argv.includes("--type-change")) {
+			guild.commands.set([]);
+			console.log(`Commands cleared in ${guild.name}`);
+		}
 
-      console.warn("Guild could not be detected.");
-      return new Collection();
+		const setInfo = await guild.commands.set(cmdArr);
+		if (!setInfo.size) {
+			console.error("Failed to set slash commands.");
+			return setInfo;
+		}
+		const slashCount = setInfo.reduce((x, y) => {
+			return x + (y.type === "CHAT_INPUT" ? 1 : 0);
+		}, 0);
+		const contextCount = setInfo.size - slashCount;
+		console.log(`${slashCount} slash command${plural(slashCount)} set successfully in ${guild.name}.`);
+		console.log(`${contextCount} context menu item${plural(contextCount)} set successfully in ${guild.name}.`);
+		return setInfo;
+	}
 
-    } else {
+	async function setPermissions(
+		slashCommands: Collection<string, SlashCommand>,
+		contextCommands: Collection<string, ContextMenuCommand>,
+		commandData: Collection<Snowflake, ApplicationCommand>
+	): Promise<void> {
+		const permissions: GuildApplicationCommandPermissionData[] = [];
+		const cmd = commandData.first();
+		if (!cmd) return;
+		const guild = cmd.guild;
+		if (!guild) {
+			console.warn("Could not get the guild for setting permissions.");
+			return;
+		}
+		for (const [key, val] of commandData) {
+			const command = slashCommands.get(val.name) ?? contextCommands.get(val.name);
+			if (!command || !command.permissions) continue;
+			const data: GuildApplicationCommandPermissionData = {
+				id: key,
+				permissions: command.permissions
+			};
+			permissions.push(data);
+		}
+		const permSetInfo = await guild.commands.permissions.set({ fullPermissions: permissions });
+		if (permSetInfo.size === 0) {
+			console.log("No permissions have been set.");
+			return;
+		}
+		console.log("Permissions set successfully.");
+	}
 
-      const setInfo = await guild.commands.set(cmdArr);
-      if (!setInfo.size) {
+	client.once("ready", async () => {
+		// Loading commands from /commands.
+		await loadFiles(slashCommands, join(__dirname, "..", "commands"));
+		await loadFiles(contextCommands, join(__dirname, "..", "context-commands"));
 
-        console.error("Failed to set slash commands.");
-        return setInfo;
+		console.log(`${slashCommands.size} slash command${plural(slashCommands.size)} loaded.`);
+		console.log(`${contextCommands.size} context menu item${plural(contextCommands.size)} loaded.`);
 
-      } else {
-        const s = setInfo.size === 1 ? "" : "s";
-        console.log(`${setInfo.size} slash command${s} set successfully in ${guild.name}.`);
-        return setInfo;
+		if (!process.argv.includes("--no-edit")) {
+			// Setting the commands as slash commands in the selected guild.
+			commandData = await setCommands(slashCommands, contextCommands);
 
-      }
+			// Configuring permissions for every command.
+			await setPermissions(slashCommands, contextCommands, commandData);
+		} else {
+			console.log("No commands set.");
+		}
+	});
+	client.on("interactionCreate", (interaction) => {
+		if (interaction.isCommand()) {
+			const cmd = slashCommands.get(interaction.commandName);
+			if (!cmd) {
+				return;
+			}
+			cmd.execute(interaction);
+		} else if (interaction.isContextMenu()) {
+			const cmd = contextCommands.get(interaction.commandName);
+			if (!cmd) {
+				return;
+			}
+			cmd.execute(interaction);
+		}
+	});
 
-    }
-
-  }
-
-  async function setPermissions(commands: Collection<string, Command>, commandData: Collection<Snowflake, ApplicationCommand>): Promise<void> {
-    const permissions: GuildApplicationCommandPermissionData[] = [];
-    const cmd = commandData.first();
-    if (!cmd) return;
-    const guild = cmd.guild;
-    if (!guild) {
-      console.warn("Could not get the guild for setting permissions.");
-      return;
-    }
-    for (const [key, val] of commandData) {
-      const commandPermissions = commands.get(val.name)?.permissions;
-      if (!commandPermissions) continue;
-      const data: GuildApplicationCommandPermissionData = {
-        id: key,
-        permissions: commandPermissions
-      };
-      permissions.push(data);
-      const permSetInfo = await guild.commands.permissions.set({ fullPermissions: permissions });
-      if (permSetInfo.size === 0) {
-        console.log("No permissions have been set");
-        return;
-      }
-      console.log("Permissions set successfully");
-      return;
-    }
-  }
-
-  client.once(
-    "ready",
-    async() => {
-      // Loading commands from /commands.
-      await loadFiles<Command>(commands, join(__dirname, "..", "commands"));
-      const s = commands.size === 1 ? "" : "s";
-      console.log(`${commands.size} command${s} loaded.`);
-
-      // Setting the commands as slash commands in the selected guild.
-      commandData = await setCommands(commands);
-
-      // Configuring permissions for every command.
-      await setPermissions(commands, commandData);
-
-    }
-  );
-  client.on(
-    "interactionCreate",
-    (interaction) => {
-
-      if (!interaction.isCommand()) {
-
-        return;
-
-      }
-      const cmd = commands.get(interaction.commandName);
-      if (!cmd) {
-
-        return;
-
-      }
-      cmd.execute(interaction);
-
-    }
-  );
-
-  return commands;
-
+	return [slashCommands, contextCommands];
 }
 
-export {
-  startCommandHandler
-};
+export { startCommandHandler };
