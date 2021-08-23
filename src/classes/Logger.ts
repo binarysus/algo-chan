@@ -26,7 +26,7 @@ export class Logger {
 		} else {
 			timeString = "";
 		}
-		console.log(colorFn(`[ ${modifier}${timeString} ] `) + input);
+		console.log(colorFn(`[ ${modifier}${timeString} ] `), input);
 	}
 
 	public debug(input: string, time = true) {
