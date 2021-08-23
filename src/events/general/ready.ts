@@ -1,14 +1,17 @@
+import { LogLevel, Logger } from "#classes/Logger";
+
 import type { DiscordEvent } from "#types/DiscordEvent";
 
 const event: DiscordEvent = {
 	data: {
-		name: "a",
+		name: "readyEvent",
 		event: "ready",
 		description: "boop",
 		once: true
 	},
 	async execute() {
-		console.log("bot is ready");
+		const logger = new Logger(LogLevel.INFO);
+		logger.info("bot is ready.");
 	}
 };
 

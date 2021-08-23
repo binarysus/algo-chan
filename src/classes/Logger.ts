@@ -26,7 +26,7 @@ export class Logger {
 		} else {
 			timeString = "";
 		}
-		console.log(colorFn(`[ ${modifier}${timeString} ] ${input}`));
+		console.log(colorFn(`[ ${modifier}${timeString} ] `) + input);
 	}
 
 	public debug(input: string, time = true) {
@@ -36,17 +36,17 @@ export class Logger {
 
 	public info(input: string, time = true) {
 		if (this.logLevel > LogLevel.INFO) return;
-		this.log(input, time, "INFO", chalk.green);
+		this.log(input, time, "INFO ", chalk.green);
 	}
 
 	public warn(input: string, time = true) {
 		if (this.logLevel > LogLevel.WARN) return;
-		this.log(input, time, "WARN", chalk.hex("#FC7F03"));
+		this.log(input, time, "WARN ", chalk.hex("#FC7F03"));
 	}
 
 	public error(input: string, time = true) {
 		if (this.logLevel > LogLevel.ERROR) return;
-		this.log(input, time, "ERR", chalk.red);
+		this.log(input, time, "ERROR", chalk.red);
 	}
 
 	public fatal(input: string, time = true) {

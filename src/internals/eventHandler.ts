@@ -7,7 +7,9 @@ import type { DiscordEvent } from "#types/DiscordEvent";
 
 async function startEventHandler(client: Client): Promise<Collection<string, DiscordEvent>> {
 	const events = new Collection<string, DiscordEvent>();
-	await loadFiles<DiscordEvent>(events, join(__dirname, "..", "events"));
+	await loadFiles(events, join(__dirname, "..", "events"), client);
+
+	client.logger.info(`${events.size} event${events.size === 1 ? "" : "s"} loaded successfully.`);
 
 	const onEvents = new Collection<keyof ClientEvents, DiscordEvent[]>();
 	const onceEvents = new Collection<keyof ClientEvents, DiscordEvent[]>();
@@ -38,6 +40,7 @@ async function startEventHandler(client: Client): Promise<Collection<string, Dis
 				dEvent.execute(...params);
 			}
 		});
+		client.logger.debug(`${event} event set successfully.`);
 	}
 
 	for (const [event, val] of onceEvents) {
@@ -47,7 +50,9 @@ async function startEventHandler(client: Client): Promise<Collection<string, Dis
 				dEvent.execute(...params);
 			}
 		});
+		client.logger.debug(`${event} event set successfully.`);
 	}
+
 	return events;
 }
 
