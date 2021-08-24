@@ -29,25 +29,25 @@ function startCommandHandler(client: Client) {
 		const guild = client.guilds.cache.get(BS_GUILD_ID);
 
 		if (!guild) {
-			console.warn("Guild could not be detected.");
+			client.logger.error("Guild could not be detected.");
 			return new Collection();
 		}
 		if (process.argv.includes("--type-change")) {
 			guild.commands.set([]);
-			console.log(`Commands cleared in ${guild.name}`);
+			client.logger.info(`Commands cleared in ${guild.name}`);
 		}
 
 		const setInfo = await guild.commands.set(cmdArr);
 		if (!setInfo.size) {
-			console.error("Failed to set slash commands.");
+			client.logger.error("Failed to set slash commands.");
 			return setInfo;
 		}
 		const slashCount = setInfo.reduce((x, y) => {
 			return x + (y.type === "CHAT_INPUT" ? 1 : 0);
 		}, 0);
 		const contextCount = setInfo.size - slashCount;
-		console.log(`${slashCount} slash command${plural(slashCount)} set successfully in ${guild.name}.`);
-		console.log(`${contextCount} context menu item${plural(contextCount)} set successfully in ${guild.name}.`);
+		client.logger.info(`${slashCount} slash command${plural(slashCount)} set successfully in ${guild.name}.`);
+		client.logger.info(`${contextCount} context menu item${plural(contextCount)} set successfully in ${guild.name}.`);
 		return setInfo;
 	}
 
@@ -61,7 +61,7 @@ function startCommandHandler(client: Client) {
 		if (!cmd) return;
 		const guild = cmd.guild;
 		if (!guild) {
-			console.warn("Could not get the guild for setting permissions.");
+			client.logger.error("Could not get the guild for setting permissions.");
 			return;
 		}
 		for (const [key, val] of commandData) {
@@ -75,19 +75,19 @@ function startCommandHandler(client: Client) {
 		}
 		const permSetInfo = await guild.commands.permissions.set({ fullPermissions: permissions });
 		if (permSetInfo.size === 0) {
-			console.log("No permissions have been set.");
+			client.logger.info("No permissions have been set.");
 			return;
 		}
-		console.log("Permissions set successfully.");
+		client.logger.info("Permissions set successfully.");
 	}
 
 	client.once("ready", async () => {
 		// Loading commands from /commands.
-		await loadFiles(slashCommands, join(__dirname, "..", "commands"));
-		await loadFiles(contextCommands, join(__dirname, "..", "context-commands"));
+		await loadFiles(slashCommands, join(__dirname, "..", "commands"), client);
+		await loadFiles(contextCommands, join(__dirname, "..", "context-commands"), client);
 
-		console.log(`${slashCommands.size} slash command${plural(slashCommands.size)} loaded.`);
-		console.log(`${contextCommands.size} context menu item${plural(contextCommands.size)} loaded.`);
+		client.logger.info(`${slashCommands.size} slash command${plural(slashCommands.size)} loaded.`);
+		client.logger.info(`${contextCommands.size} context menu item${plural(contextCommands.size)} loaded.`);
 
 		if (!process.argv.includes("--no-edit")) {
 			// Setting the commands as slash commands in the selected guild.
@@ -96,7 +96,7 @@ function startCommandHandler(client: Client) {
 			// Configuring permissions for every command.
 			await setPermissions(slashCommands, contextCommands, commandData);
 		} else {
-			console.log("No commands set.");
+			client.logger.info("No commands set.");
 		}
 	});
 	client.on("interactionCreate", (interaction) => {
@@ -105,12 +105,14 @@ function startCommandHandler(client: Client) {
 			if (!cmd) {
 				return;
 			}
+			client.logger.debug(`/${cmd.data.name} executed by ${interaction.user.tag}.`);
 			cmd.execute(interaction);
 		} else if (interaction.isContextMenu()) {
 			const cmd = contextCommands.get(interaction.commandName);
 			if (!cmd) {
 				return;
 			}
+			client.logger.debug(`(ctx) ${cmd.data.name} executed by ${interaction.user.tag}.`);
 			cmd.execute(interaction);
 		}
 	});

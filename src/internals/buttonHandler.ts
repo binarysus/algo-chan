@@ -7,9 +7,9 @@ import type { Client } from "discord.js";
 
 async function startButtonHandler(client: Client): Promise<Collection<string, ButtonHandlerObject>> {
 	const buttons = new Collection<string, ButtonHandlerObject>();
-	await loadFiles(buttons, join(__dirname, "..", "buttons"));
+	await loadFiles(buttons, join(__dirname, "..", "buttons"), client);
 
-	console.log(`${buttons.size} button${buttons.size === 1 ? "" : "s"} loaded.`);
+	client.logger.info(`${buttons.size} button${buttons.size === 1 ? "" : "s"} loaded.`);
 
 	client.on("interactionCreate", (interaction) => {
 		if (!interaction.isButton()) return;
