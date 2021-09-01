@@ -1,4 +1,4 @@
-import type PistonResponse from "#types/PistonReponse";
+import type { PistonResponse } from "#types/PistonReponse";
 
 interface PistonBody {
 	language: string;

@@ -1,4 +1,4 @@
-export default interface Fetched {
+export interface PistonResponse {
 	ran: boolean;
 	language: string;
 	version: string;
