@@ -10,8 +10,9 @@
 		"format:check": "npx prettier src -c",
 		"lint": "npx eslint src",
 		"start": "npx env-cmd node .",
-		"start:no-edit": "npx env-cmd node . --no-edit",
-		"start:type-change": "npx env-cmd node . --type-change"
+		"start:edit": "npx env-cmd node . --edit",
+		"start:type-change": "npx env-cmd node . --type-change",
+		"start:debug": "npx env-cmd node . --debug"
 	},
 	"repository": {
 		"type": "git",

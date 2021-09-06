@@ -89,7 +89,7 @@ function startCommandHandler(client: Client) {
 		client.logger.info(`${slashCommands.size} slash command${plural(slashCommands.size)} loaded.`);
 		client.logger.info(`${contextCommands.size} context menu item${plural(contextCommands.size)} loaded.`);
 
-		if (!process.argv.includes("--no-edit")) {
+		if (process.argv.includes("--edit")) {
 			// Setting the commands as slash commands in the selected guild.
 			commandData = await setCommands(slashCommands, contextCommands);
 
