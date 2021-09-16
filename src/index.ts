@@ -14,7 +14,11 @@ const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
 
-client.logger = new Logger(LogLevel.INFO);
+let level = LogLevel.INFO;
+
+if (process.argv.includes("--debug")) level = LogLevel.DEBUG;
+
+client.logger = new Logger(level);
 
 startEventHandler(client);
 startCommandHandler(client);
