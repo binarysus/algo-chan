@@ -1,7 +1,7 @@
 import { Formatters, MessageEmbed } from "discord.js";
 import type { PistonResponse } from "#types/PistonReponse";
 
-export default function pistonEmbed(fetched: PistonResponse) {
+export function pistonEmbed(fetched: PistonResponse) {
 	const resultEmbed = new MessageEmbed();
 	if (fetched.stderr) {
 		resultEmbed.setTitle("oops, there was an error").setDescription(`\`\`\`${fetched.stderr.slice(1000)}\`\`\``);
